@@ -1,0 +1,14 @@
+Vendored from https://github.com/ozkl/doomgeneric (Chocolate Doom / Linux Doom).
+
+Local changes for ESP32 VGA32:
+- doomfeatures.h: FEATURE_SOUND disabled
+- config.h: FILES_DIR=/sd, unistd/stat available
+- i_system.c: zone malloc from PSRAM, I_Error does not call exit/zenity
+- doomgeneric.c: screen buffer from PSRAM
+- m_config.c: default config dir /sd
+- Large renderer/info/ticcmd tables allocated from PSRAM (Arduino
+  linker cannot place .ext_ram.bss in PSRAM)
+- Video backend is FabGL VGA16Controller (16-color packed framebuffer)
+
+Platform backends (SDL, X11, Win32, …) were not copied.
+The FabGL backend lives in src/doomgeneric_fabgl.cpp.
